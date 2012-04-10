@@ -7,6 +7,7 @@ The phases involved in migration are described below:
 # Prerequisites
 
 Some of the scripts make use of other tools.  You need to install:
+
  * [underscore-cli] (https://github.com/ddopson/underscore-cli) - used to parse JSON data from the github APIs.  Implies installing Node.js, but that is very easy and the steps are described on the underscore-cli page.
  * [ack] (http://betterthangrep.com/) - "Better than grep" - used in 'bulk-replace.sh'. You could convert all the ack references to use grep, but ACK is an awesome tool and you should check it out.
 
@@ -32,11 +33,11 @@ Now, you can verify that you have API access to the old github by running:
 There are 3 values used for the 'create-new-repos.sh' script: COOKIE_TEXT, AUTH_TOKEN, and TEAM_ID.  We get these values by snooping the network traffic from the Chrome browser.  Subsequently, the programmatic requests will look like a continuation of your browser session (don't log out in your browser, or that session will end, and the scripts will stop working)
 
 
-0) Open '${NEW_GITHUB_HTTP}/organizations/${NEW_ORGNAME}/repositories/new' in Chrome.  Open the Developer Console
-1) Create a repo manually, and look at the 'Network' tab in Chrome's developer console
-2) Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Request Headers section -> Cookie)
-3) Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Form Data section -> authenticity_token)
-4) Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Form Data section -> team_id)
+0. Open '${NEW_GITHUB_HTTP}/organizations/${NEW_ORGNAME}/repositories/new' in Chrome.  Open the Developer Console
+1. Create a repo manually, and look at the 'Network' tab in Chrome's developer console
+2. Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Request Headers section -> Cookie)
+3. Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Form Data section -> authenticity_token)
+4. Copy (Dev Console -> Network -> select the POST request to 'repositories' -> Headers tab -> Form Data section -> team_id)
 
 e.g.
 
@@ -70,6 +71,7 @@ That script will run in a loop and all changes pushed to the old location will b
 The team migration is the only step of this process that needs to be 'atomic'.  Your team must never push changes to both locations concurrently.  Once the new location is up and running, at a single coordinated instant, the entire team needs to switch their commit-and-push behavior from the old location to the new location.  For a small team, this is pretty easy ( "hey team, starting today, all changes go to the new location" ).
 
 The other key component of your migration plan will be updating automated build and deploy tools.  Make sure you have a plan to address everything on this checklist that is applicable to your project:
+
  * Scripts and config files checked into your projects
  * Hudson/Jenkins build jobs
  * External Deployment Tools (eg Rightscale scripts) that pull from github
