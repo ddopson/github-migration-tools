@@ -4,6 +4,12 @@ This tool is designed to automate the process of porting an entire organization 
 
 The phases involved in migration are described below:
 
+# Prerequisites
+
+Some of the scripts make use of other tools.  You need to install:
+ * [underscore-cli] (https://github.com/ddopson/underscore-cli) - used to parse JSON data from the github APIs.  Implies installing Node.js, but that is very easy and the steps are described on the underscore-cli page.
+ * [ack] (http://betterthangrep.com/) - "Better than grep" - used in 'bulk-replace.sh'. You could convert all the ack references to use grep, but ACK is an awesome tool and you should check it out.
+
 # Phase Zero: Edit 'config.sh'
 
 Most of the values are pretty easy, like OLD_ORGNAME for the name of the github org being migrated, and OLD_GITHUB for the host name of the github server.  You can also change whether to access github with HTTPS or not as some deployments require it, and others don't support HTTPS.
