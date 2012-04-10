@@ -12,7 +12,16 @@ Some of the scripts make use of other tools.  You need to install:
 
 # Phase Zero: Edit 'config.sh'
 
+### Filling in the basics
+
 Most of the values are pretty easy, like OLD_ORGNAME for the name of the github org being migrated, and OLD_GITHUB for the host name of the github server.  You can also change whether to access github with HTTPS or not as some deployments require it, and others don't support HTTPS.
+
+So, something like this:
+
+    OLD_GITHUB='github.com'
+    NEW_GITHUB='github.company.com'
+    OLD_ORGNAME='myOrganization'
+    NEW_ORGNAME='myOrganization'
 
 Now, you can verify that you have API access to the old github by running:
 
